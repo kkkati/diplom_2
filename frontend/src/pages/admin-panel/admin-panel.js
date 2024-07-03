@@ -62,7 +62,7 @@ export const AdminPanel = styled(AdminPanelContainer)`
   & .products-and-pagination {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    // justify-content: center;
   }
 
   & .current-page {
