@@ -14,10 +14,6 @@ const ProductShema = mongoose.Schema(
     image: {
       type: String,
       require: true,
-      validate: {
-        validator: validator.isURL,
-        message: "Image should be a valid url",
-      },
     },
     price: {
       type: Number,
@@ -27,13 +23,6 @@ const ProductShema = mongoose.Schema(
       type: Number,
       require: true,
     },
-    // ,
-    // comments: [
-    //   {
-    //     type: mongoose.Schema.Types.ObjectId,
-    //     ref: "Comment",
-    //   },
-    // ],
   },
   { timestamps: true }
 );

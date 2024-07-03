@@ -3,6 +3,7 @@ const Product = require("../models/Product");
 //add
 async function addProduct(product) {
   const newProduct = await Product.create(product);
+  console.log(newProduct);
   return newProduct;
 }
 
