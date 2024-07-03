@@ -21,7 +21,7 @@ const {
 const hasRole = require("./midlewares/hasRole");
 const ROLES = require("./constants/roles");
 const authenticated = require("./midlewares/authenticated");
-const { addCategory, getCategorys } = require("./controllers/Category");
+const { addCategory, getCategorys } = require("./controllers/category");
 
 const port = 3001;
 const app = express();

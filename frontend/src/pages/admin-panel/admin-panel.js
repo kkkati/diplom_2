@@ -67,4 +67,5 @@ export const AdminPanel = styled(AdminPanelContainer)`
 
   & .current-page {
     width: 100%;
+    margin: 0;
 `;
