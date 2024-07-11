@@ -5,9 +5,12 @@ import styled from "styled-components";
 import { debounce } from "./utils";
 import { request } from "../../utils";
 import { Category } from "../../components";
+import { useDispatch, useSelector } from "react-redux";
+import { selectProducts } from "../../selectors";
+import { setProducts } from "../../actions";
 
 const MainContainer = ({ className }) => {
-  const [products, setProducts] = useState([]);
+  const products = useSelector(selectProducts);
   const [page, setPage] = useState(1);
   const [lastPage, setLastPage] = useState(1);
   const [shouldSearch, setShouldSearch] = useState(false);
@@ -15,13 +18,14 @@ const MainContainer = ({ className }) => {
   const [sort, setSort] = useState(1);
   const [currentCategory, setCurrentCategory] = useState("Все категории");
   const [isLoad, setIsLoad] = useState(true);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     setIsLoad(true);
     request(
       `/products?search=${searchName}&category=${currentCategory}&sort=${sort}&page=${page}&limit=${PAGINATION_LIMIT}`
     ).then(({ data: { products, lastPage } }) => {
-      setProducts(products);
+      dispatch(setProducts(products));
       setLastPage(lastPage);
     });
     setIsLoad(false);

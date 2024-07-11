@@ -12,3 +12,4 @@ export * from "./delete-basket";
 export * from "./save-edit-product-async";
 export * from "./delete-product-async";
 export * from "./add-product-async";
+export * from "./set-products";

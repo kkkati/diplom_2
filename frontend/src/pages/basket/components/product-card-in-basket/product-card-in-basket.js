@@ -27,9 +27,13 @@ const ProductCardInBasketContainer = ({
 
   const onCountChange = ({ target }) => {
     setCountValue(target.value);
-    dispatch(addProductToBasketAsync(userId, productId, 1));
+    if (count > target.value) {
+      dispatch(addProductToBasketAsync(userId, productId, -1));
+    } else {
+      dispatch(addProductToBasketAsync(userId, productId, 1));
+    }
   };
-
+  console.log(count);
   return (
     <div className={className}>
       <img src={productImage} alt={productName} width="130px" height="98px" />

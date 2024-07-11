@@ -24,9 +24,8 @@ const BasketContainer = ({ className }) => {
     if (!isAuthUser) {
       return;
     }
-
     dispatch(loadUserAsync(userId));
-  }, [dispatch, userId, basket, isAuthUser]);
+  }, [dispatch, userId, isAuthUser]);
 
   return (
     <div className={className}>

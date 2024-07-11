@@ -4,17 +4,19 @@ import { useEffect, useState } from "react";
 import { checkAccess, request } from "../../utils";
 import { PAGINATION_LIMIT, ROLE } from "../../constans";
 import { Pagination } from "../main/components";
-import { useSelector } from "react-redux";
-import { selectUserRole } from "../../selectors";
+import { useDispatch, useSelector } from "react-redux";
+import { selectProducts, selectUserRole } from "../../selectors";
 import { H2 } from "../../components";
+import { setProducts } from "../../actions";
 
 const AdminPanelContainer = ({ className }) => {
-  const [products, setProducts] = useState([]);
+  const products = useSelector(selectProducts);
   const [page, setPage] = useState(1);
   const [lastPage, setLastPage] = useState(1);
   const [categorys, setCategorys] = useState([]);
   const userRole = useSelector(selectUserRole);
   const isAdmin = checkAccess([ROLE.ADMIN], userRole);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (!isAdmin) {
@@ -24,13 +26,13 @@ const AdminPanelContainer = ({ className }) => {
     request(
       `/products?search=${""}&page=${page}&limit=${PAGINATION_LIMIT}`
     ).then(({ data: { products, lastPage } }) => {
-      setProducts(products);
+      dispatch(setProducts(products));
       setLastPage(lastPage);
     });
     request(`/categorys`).then(({ data: categorys }) => {
       setCategorys(categorys);
     });
-  }, [page, products, isAdmin]);
+  }, [page, isAdmin, products]);
 
   return (
     <div className={className}>
